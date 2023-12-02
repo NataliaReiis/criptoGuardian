@@ -1,0 +1,19 @@
+.current-value{
+    border: 1px solid $color2;
+    width: 25%;
+    height: auto;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: $color1;
+    padding: 1rem;
+    border-radius: $border-radius;
+    margin: 2rem;
+    img{
+        width: 13%;
+    }
+    span{
+        color: $color2;
+        padding: 0 1rem;
+    }
+}

@@ -1,0 +1,42 @@
+.companies-container {
+    display: flex;
+    margin:  1rem;
+  .companies {
+    width: 18rem;
+    height: auto;
+    padding: 2rem 1rem;
+    margin: 1rem;
+    background-color: $color1;
+    border-radius: $border-radius;
+    span {
+      display: flex;
+      align-items: center;
+
+      h1 {
+        @include text-style(2rem, 700, $color2);
+        padding: 0 1rem;
+      }
+      img {
+        width: 10%;
+      }
+    }
+    .infos {
+      @include text-style(0.95rem, 500, $color2);
+      padding-top: 1rem;
+
+      p {
+        padding: 0.5rem;
+      }
+      button {
+        background-color: black;
+        color: $color2;
+        outline: none;
+        border: $color2;
+        padding: 0.7rem;
+        text-align: center;
+        border-radius: $border-radius;
+        margin-top: 0.7rem;
+      }
+    }
+  }
+}
