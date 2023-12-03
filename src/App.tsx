@@ -1,5 +1,4 @@
 import { useEffect, useState } from "react";
-import axios from "axios";
 
 import Company from "./components/Company";
 import Graphic from "./components/Graphic";
@@ -25,15 +24,23 @@ function App() {
     },
   ]);
 
-  useEffect(() => {
-    (async () => {
-      //TODO: Mudar pra fetch
-      const { data } = await axios.get(
+  const fetchData = async () => {
+    try {
+      const response = await fetch(
         "https://crypto-guardian-api.onrender.com/api/v1/transaction"
       );
-      setEthBrlValue(parseFloat(data));
-    })();
-  });
+      const responseBody = await response.json();
+      setEthBrlValue(parseFloat(responseBody));
+    } catch (error) {
+      console.error(`Error trying fetch data: ${error}`);
+    }
+  };
+
+  useEffect(() => {
+    fetchData();
+    const intervalId = setInterval(fetchData, 5000);
+    return () => clearInterval(intervalId);
+  }, []);
 
   const handleCompanyBidValueChange = (
     companyID: number,
