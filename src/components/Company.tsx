@@ -1,4 +1,8 @@
 import { useState } from "react";
+import { ToastContainer, toast } from "react-toastify";
+
+import "react-toastify/dist/ReactToastify.css";
+
 import eth from "../assets/eth.png";
 
 interface CompanyProps {
@@ -35,12 +39,10 @@ export default function Company(props: CompanyProps) {
     const responseBody = await response.json();
 
     if (responseBody.message === "valid") {
-      //TODO: Adicionar popup positivo
-      alert("valid");
+      toast.success("Transação Concluída com Sucesso!");
     }
     if (responseBody.message === "invalid") {
-      //TODO: Adicionar popup negavito
-      alert("invalid");
+      toast.error("Com o valor inserido não foi possível fazer a transação.");
     }
 
     setIsEditing(false);
@@ -48,38 +50,48 @@ export default function Company(props: CompanyProps) {
   };
 
   return (
-    <div className="companies-container">
-      <div className="companies">
-        <span>
-          <img src={eth} alt="" />
-          <h1>{props.name}</h1>
-        </span>
-        <div className="infos">
-          <p>Raio de compra:</p>
-          {isEditing ? (
-            <form onSubmit={handleSubmit}>
-              <input
-                type="number"
-                placeholder="min"
-                onChange={(e) => setMinValue(parseInt(e.target.value))}
-                required
-              />
-              <input
-                type="number"
-                placeholder="max"
-                onChange={(e) => setMaxValue(parseInt(e.target.value))}
-                required
-              />
-              <button type="submit">Enviar</button>
-            </form>
-          ) : (
-            <div>
-              <p>{props.bidValue}</p>
-              <button onClick={() => setIsEditing(true)}>Alterar Valor</button>
-            </div>
-          )}
+    <>
+      <div className="companies-container">
+        <div className="companies">
+          <span>
+            <img src={eth} alt="" />
+            <h1>{props.name}</h1>
+          </span>
+          <div className="infos">
+            <p>Raio de compra:</p>
+            {isEditing ? (
+              <form onSubmit={handleSubmit}>
+                <input
+                  type="number"
+                  placeholder="min"
+                  onChange={(e) => setMinValue(parseInt(e.target.value))}
+                  required
+                />
+                <input
+                  type="number"
+                  placeholder="max"
+                  onChange={(e) => setMaxValue(parseInt(e.target.value))}
+                  required
+                />
+                <button type="submit">Enviar</button>
+              </form>
+            ) : (
+              <div>
+                <p>{props.bidValue}</p>
+                <button onClick={() => setIsEditing(true)}>
+                  Alterar Valor
+                </button>
+              </div>
+            )}
+          </div>
         </div>
       </div>
-    </div>
+      <ToastContainer
+        position="bottom-right"
+        hideProgressBar
+        closeOnClick
+        autoClose={1000}
+      />
+    </>
   );
 }
