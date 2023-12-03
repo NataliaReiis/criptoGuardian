@@ -12,17 +12,17 @@ function App() {
     {
       id: 0,
       name: "CryptoVerse ",
-      bidValue: 1,
+      bidValue: "10000-50000",
     },
     {
       id: 1,
       name: "DigitalCoin",
-      bidValue: 1,
+      bidValue: "3250-4000",
     },
     {
       id: 2,
       name: "BlockTech",
-      bidValue: 0,
+      bidValue: "10000-20000",
     },
   ];
 
