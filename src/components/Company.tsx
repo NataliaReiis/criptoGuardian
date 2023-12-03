@@ -3,12 +3,13 @@ import eth from "../assets/eth.png";
 
 interface CompanyProps {
   name: string;
-  bidValue?: number;
+  bidValue: string | number;
 }
 
 export default function Company(props: CompanyProps) {
   const [minValue, setMinValue] = useState<number>();
   const [maxValue, setMaxValue] = useState<number>();
+  const [isEditing, setIsEditing] = useState<boolean>(false);
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
@@ -33,9 +34,11 @@ export default function Company(props: CompanyProps) {
     if (responseBody.message === "Valid") {
       //TODO: Adicionar popup positivo
       console.log("valid");
+      setIsEditing(false);
     } else {
       //TODO: Adicionar popup negavito
       console.log("invalid");
+      setIsEditing(false);
     }
   };
 
@@ -48,25 +51,27 @@ export default function Company(props: CompanyProps) {
         </span>
         <div className="infos">
           <p>Raio de compra:</p>
-          {props.bidValue ? (
-            <div>
-              <p>{props.bidValue}</p>
-              <button>Alterar Valor</button>
-            </div>
-          ) : (
-            <form onSubmit={(e) => handleSubmit(e)}>
+          {isEditing ? (
+            <form onSubmit={handleSubmit}>
               <input
                 type="number"
                 placeholder="min"
                 onChange={(e) => setMinValue(parseInt(e.target.value))}
+                required
               />
               <input
                 type="number"
                 placeholder="max"
                 onChange={(e) => setMaxValue(parseInt(e.target.value))}
+                required
               />
               <button type="submit">Enviar</button>
             </form>
+          ) : (
+            <div>
+              <p>{props.bidValue}</p>
+              <button onClick={() => setIsEditing(true)}>Alterar Valor</button>
+            </div>
           )}
         </div>
       </div>
