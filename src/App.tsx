@@ -7,8 +7,7 @@ import eth from "./assets/eth.png";
 
 function App() {
   const [ethBrlValue, setEthBrlValue] = useState<number>();
-
-  const companies = [
+  const [companies, setCompanies] = useState([
     {
       id: 0,
       name: "CryptoVerse ",
@@ -24,7 +23,7 @@ function App() {
       name: "BlockTech",
       bidValue: "10000-20000",
     },
-  ];
+  ]);
 
   useEffect(() => {
     (async () => {
@@ -35,6 +34,20 @@ function App() {
       setEthBrlValue(parseFloat(data));
     })();
   });
+
+  const handleCompanyBidValueChange = (
+    companyID: number,
+    newBidValue: string
+  ) => {
+    setCompanies((prevCompanies) =>
+      prevCompanies.map((company) =>
+        company.id === companyID
+          ? { ...company, bidValue: newBidValue }
+          : company
+      )
+    );
+  };
+
   return (
     <div className="home">
       <div className="current-value">
@@ -52,6 +65,8 @@ function App() {
             key={index}
             name={element.name}
             bidValue={element.bidValue}
+            companyID={element.id}
+            onBidValueChange={handleCompanyBidValueChange}
           />
         ))}
       </div>
