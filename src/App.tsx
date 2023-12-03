@@ -8,8 +8,27 @@ import eth from "./assets/eth.png";
 function App() {
   const [ethBrlValue, setEthBrlValue] = useState<number>();
 
+  const companies = [
+    {
+      id: 0,
+      name: "CryptoVerse ",
+      bidValue: 1,
+    },
+    {
+      id: 1,
+      name: "DigitalCoin",
+      bidValue: 1,
+    },
+    {
+      id: 2,
+      name: "BlockTech",
+      bidValue: 0,
+    },
+  ];
+
   useEffect(() => {
     (async () => {
+      //TODO: Mudar pra fetch
       const { data } = await axios.get(
         "https://crypto-guardian-api.onrender.com/api/v1/transaction"
       );
@@ -26,7 +45,16 @@ function App() {
         </span>
       </div>
       <Graphic />
-      <Company />
+      {/* TODO: tirar o css-in-js e colocar no sass */}
+      <div style={{ display: "flex", flexDirection: "row" }}>
+        {companies.map((element, index) => (
+          <Company
+            key={index}
+            name={element.name}
+            bidValue={element.bidValue}
+          />
+        ))}
+      </div>
     </div>
   );
 }
