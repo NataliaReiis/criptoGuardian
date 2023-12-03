@@ -34,14 +34,13 @@ export default function Company(props: CompanyProps) {
     );
     const responseBody = await response.json();
 
-    if (responseBody.message === "Valid") {
+    if (responseBody.message === "valid") {
       //TODO: Adicionar popup positivo
-      console.log("valid");
-      setIsEditing(false);
+      alert("valid");
     }
     if (responseBody.message === "invalid") {
       //TODO: Adicionar popup negavito
-      console.log("invalid");
+      alert("invalid");
     }
 
     setIsEditing(false);
