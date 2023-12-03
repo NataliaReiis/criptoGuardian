@@ -4,6 +4,8 @@ import eth from "../assets/eth.png";
 interface CompanyProps {
   name: string;
   bidValue: string | number;
+  companyID: number;
+  onBidValueChange: (companyID: number, newBidValue: string) => void;
 }
 
 export default function Company(props: CompanyProps) {
@@ -31,15 +33,19 @@ export default function Company(props: CompanyProps) {
       options
     );
     const responseBody = await response.json();
+
     if (responseBody.message === "Valid") {
       //TODO: Adicionar popup positivo
       console.log("valid");
       setIsEditing(false);
-    } else {
+    }
+    if (responseBody.message === "invalid") {
       //TODO: Adicionar popup negavito
       console.log("invalid");
-      setIsEditing(false);
     }
+
+    setIsEditing(false);
+    props.onBidValueChange(props.companyID, payload.rangeBidValue);
   };
 
   return (
