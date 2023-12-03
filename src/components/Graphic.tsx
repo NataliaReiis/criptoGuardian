@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+/* import { useEffect, useState } from "react";
 import { Line } from "react-chartjs-2";
 
 interface ApiDataItem {
@@ -13,9 +13,9 @@ interface ChartData {
     borderColor: string;
     fill: boolean;
   }[];
-}
+} */
 export default function Graphic() {
-  const [chartData, setChartData] = useState<ChartData>({
+  /* const [chartData, setChartData] = useState<ChartData>({
     labels: [],
     datasets: [],
   });
@@ -43,11 +43,7 @@ export default function Graphic() {
       }
     };
     fetchDataFromAPI();
-  }, []);
+  }, []); */
 
-  return (
-    <>
-      <Line data={chartData} />
-    </>
-  );
+  return <>{/* <Line data={chartData} /> */}</>;
 }
