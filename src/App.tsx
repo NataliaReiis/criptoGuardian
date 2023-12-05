@@ -42,10 +42,7 @@ function App() {
     return () => clearInterval(intervalId);
   }, []);
 
-  const handleCompanyBidValueChange = (
-    companyID: number,
-    newBidValue: string
-  ) => {
+  const handleBidValueChange = (companyID: number, newBidValue: string) => {
     setCompanies((prevCompanies) =>
       prevCompanies.map((company) =>
         company.id === companyID
@@ -73,7 +70,7 @@ function App() {
             name={element.name}
             bidValue={element.bidValue}
             companyID={element.id}
-            onBidValueChange={handleCompanyBidValueChange}
+            onBidValueChange={handleBidValueChange}
           />
         ))}
       </div>
