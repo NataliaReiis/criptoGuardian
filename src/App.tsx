@@ -2,7 +2,8 @@ import { useEffect, useState } from "react";
 
 import Company from "./components/Company";
 import Graphic from "./components/Graphic";
-import eth from "./assets/eth.png";
+
+import eth from "/assets/eth.png";
 
 function App() {
   const [ethBrlValue, setEthBrlValue] = useState<number>();
