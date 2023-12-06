@@ -1,0 +1,1 @@
+export const CRYPTO_GUARDIAN = 'https://crypto-guardian-api.onrender.com/api/v1/transaction';

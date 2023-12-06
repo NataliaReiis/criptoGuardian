@@ -65,7 +65,6 @@ function App() {
         </span>
       </div>
       <Graphic />
-      {/* TODO: tirar o css-in-js e colocar no sass */}
       <div style={{ display: "flex", flexDirection: "row" }}>
         {companies.map((element, index) => (
           <Company
