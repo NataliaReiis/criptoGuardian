@@ -1,7 +1,14 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
-import React, { useEffect, useState } from 'react';
-import { LineChart, Line, XAxis, YAxis, ResponsiveContainer, Tooltip, TooltipProps } from 'recharts';
-import { fetchEthereumPrice } from '../services/fetchEthereumPrice';
+import React, { useEffect, useState } from "react";
+import {
+  LineChart,
+  Line,
+  XAxis,
+  YAxis,
+  ResponsiveContainer,
+  Tooltip,
+  TooltipProps,
+} from "recharts";
 
 interface ApiData {
   timestamp: string;
@@ -18,7 +25,9 @@ interface ChartData {
   YAxis: { data: number[] }[];
 }
 
-const CustomTooltip: React.FC<CustomTooltipProps & TooltipProps<number, string>> = ({ active, payload, label }) => {
+const CustomTooltip: React.FC<
+  CustomTooltipProps & TooltipProps<number, string>
+> = ({ active, payload, label }) => {
   if (active && payload && payload.length) {
     const value = payload[0].value;
 
@@ -34,12 +43,16 @@ const CustomTooltip: React.FC<CustomTooltipProps & TooltipProps<number, string>>
 
 const YourLineChart: React.FC = () => {
   const [apiData, setApiData] = useState<ApiData | null>(null);
-  const [chartData, setChartData] = useState<ChartData>({ YAxis: [{ data: [] }] });
+  const [chartData, setChartData] = useState<ChartData>({
+    YAxis: [{ data: [] }],
+  });
 
   useEffect(() => {
     const fetchDataAndEthereumPrice = async () => {
       try {
-        const response = await fetch('https://crypto-guardian-api.onrender.com/api/v1/transaction');
+        const response = await fetch(
+          "https://crypto-guardian-api.onrender.com/api/v1/transaction"
+        );
         const data: ApiData = await response.json();
         setApiData(data);
 
@@ -49,7 +62,7 @@ const YourLineChart: React.FC = () => {
           return { YAxis: [{ data: newData }] };
         });
       } catch (error) {
-        console.error('Erro ao buscar dados da API:', error);
+        console.error("Erro ao buscar dados da API:", error);
       }
     };
 
@@ -62,16 +75,21 @@ const YourLineChart: React.FC = () => {
 
   return (
     <ResponsiveContainer className="graphic" width="90%" height={250}>
-      <LineChart data={chartData.YAxis[0].data.map((value, index) => ({ timestamp: index, value }))}>
+      <LineChart
+        data={chartData.YAxis[0].data.map((value, index) => ({
+          timestamp: index,
+          value,
+        }))}
+      >
         <XAxis dataKey="timestamp" />
-        <YAxis domain={['auto', 'auto']} />
+        <YAxis domain={["auto", "auto"]} />
         <Tooltip content={<CustomTooltip />} />
         <Line
           type="monotone"
           dataKey="value"
           stroke="#00C49F"
           strokeWidth={3}
-          dot={{ stroke: '#00C49F', strokeWidth: 3, r: 6 }}
+          dot={{ stroke: "#00C49F", strokeWidth: 3, r: 6 }}
         />
       </LineChart>
     </ResponsiveContainer>
@@ -79,9 +97,3 @@ const YourLineChart: React.FC = () => {
 };
 
 export default YourLineChart;
-
-
-
-
-
-
