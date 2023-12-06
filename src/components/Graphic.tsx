@@ -42,7 +42,6 @@ const CustomTooltip: React.FC<
 };
 
 const YourLineChart: React.FC = () => {
-  const [apiData, setApiData] = useState<ApiData | null>(null);
   const [chartData, setChartData] = useState<ChartData>({
     YAxis: [{ data: [] }],
   });
@@ -54,7 +53,6 @@ const YourLineChart: React.FC = () => {
           "https://crypto-guardian-api.onrender.com/api/v1/transaction"
         );
         const data: ApiData = await response.json();
-        setApiData(data);
 
         // Adiciona o novo preço ao eixo Y
         setChartData((prevChartData) => {
