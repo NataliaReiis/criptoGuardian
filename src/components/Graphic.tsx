@@ -1,6 +1,6 @@
+/* eslint-disable @typescript-eslint/no-unused-vars */
 import React, { useEffect, useState } from 'react';
 import { LineChart, Line, XAxis, YAxis, ResponsiveContainer, Tooltip, TooltipProps } from 'recharts';
-// eslint-disable-next-line @typescript-eslint/no-unused-vars
 import { fetchEthereumPrice } from '../services/fetchEthereumPrice';
 
 interface ApiData {
@@ -33,7 +33,6 @@ const CustomTooltip: React.FC<CustomTooltipProps & TooltipProps<number, string>>
 };
 
 const YourLineChart: React.FC = () => {
-  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   const [apiData, setApiData] = useState<ApiData | null>(null);
   const [chartData, setChartData] = useState<ChartData>({ YAxis: [{ data: [] }] });
 
@@ -55,14 +54,14 @@ const YourLineChart: React.FC = () => {
     };
 
     // Chama fetchDataAndEthereumPrice a cada 2000 milissegundos (2 segundos)
-    const intervalId = setInterval(fetchDataAndEthereumPrice, 10000);
+    const intervalId = setInterval(fetchDataAndEthereumPrice, 4000);
 
     // Limpa o intervalo quando o componente é desmontado
     return () => clearInterval(intervalId);
   }, []);
 
   return (
-    <ResponsiveContainer width="100%" height={300}>
+    <ResponsiveContainer width="90%" height={300}>
       <LineChart data={chartData.YAxis[0].data.map((value, index) => ({ timestamp: index, value }))}>
         <XAxis dataKey="timestamp" />
         <YAxis domain={['auto', 'auto']} />
@@ -84,56 +83,5 @@ export default YourLineChart;
 
 
 
-
-
-/*import { LineChart } from "@mui/x-charts/LineChart";
-import { getEthereumPrice } from "../services/fetchEthereumPrice";
-import { useEffect } from "react";
- import { useState, useEffect, FC } from "react";
-import { LineChart} from '@mui/x-charts';
-
-import { getEthereumPrice } from "../service/Api";
-
-
-const EthereumChart: FC = () => {
-  const [ethereumPrice, setEthereumPrice] = useState<number | null>(null);
-  const [chartData, setChartData] = useState<{ xAxis: { data: number[] }; series: { data: number[] }[] }>({
-    xAxis: { data: [] },
-    series: [{ data: [] }],
-  });
-
-  const fetchEthereumPrice = async () => {
-    try {
-      const price = await getEthereumPrice();
-      const newChartData = {
-        xAxis: { data: [...chartData.xAxis.data, new Date().toLocaleTimeString()] },
-        series: [{ data: [...chartData.series[0].data, parseFloat(price)] }],
-      };
-      setChartData(newChartData);
-      setEthereumPrice(parseFloat(price));
-    } catch (error) {
-      // erro 
-    }
-  };
-
-  useEffect(() => {
-    const intervalId = setInterval(fetchEthereumPrice, 6000);
-
-    return () => clearInterval(intervalId);
-  }, [chartData]);
-
-  return (
-    <LineChart
-      xAxis={[chartData.xAxis]}
-      series={chartData.series}
-      width={500}
-      height={300}
-      
-    />
-  );
-};
-
-export default EthereumChart;
- */
 
 
