@@ -1,9 +1,9 @@
 import { useState } from "react";
-import { ToastContainer, toast } from 'react-toastify';
+import { ToastContainer, toast } from "react-toastify";
 
 import "react-toastify/dist/ReactToastify.css";
 
-import eth from "../assets/eth.png";
+import eth from "/assets/eth.png";
 
 interface CompanyProps {
   name: string;
