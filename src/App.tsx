@@ -2,7 +2,10 @@ import { useEffect, useState } from "react";
 
 import Company from "./components/Company";
 import Graphic from "./components/Graphic";
-import eth from "./assets/eth.png";
+
+import eth from "/assets/eth.png";
+
+import { CRYPTO_GUARDIAN } from "./constants";
 
 function App() {
   const [ethBrlValue, setEthBrlValue] = useState<number>();
@@ -26,9 +29,7 @@ function App() {
 
   const fetchData = async () => {
     try {
-      const response = await fetch(
-        "https://crypto-guardian-api.onrender.com/api/v1/transaction"
-      );
+      const response = await fetch(CRYPTO_GUARDIAN);
       const responseBody = await response.json();
       setEthBrlValue(parseFloat(responseBody));
     } catch (error) {
@@ -63,12 +64,11 @@ function App() {
           <p>Valor Atual (tempo real)</p>
           <p>R${ethBrlValue?.toFixed(2)}</p>
         </span>
-        
       </div>
       <div className="logo">
-         <h1 >CriptoGuardian</h1>
+        <h1>CriptoGuardian</h1>
       </div>
-         
+
       <Graphic />
       <div className="company-content">
         {companies.map((element, index) => (
