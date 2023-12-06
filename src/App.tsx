@@ -61,10 +61,14 @@ function App() {
           <p>Valor Atual (tempo real)</p>
           <p>R${ethBrlValue?.toFixed(2)}</p>
         </span>
+        
       </div>
+      <div className="logo">
+         <h1 >CriptoGuardian</h1>
+      </div>
+         
       <Graphic />
-      {/* TODO: tirar o css-in-js e colocar no sass */}
-      <div style={{ display: "flex", flexDirection: "row" }}>
+      <div className="company-content">
         {companies.map((element, index) => (
           <Company
             key={index}

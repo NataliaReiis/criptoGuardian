@@ -1,7 +1,12 @@
-.current-value{
+.home {
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+  .current-value {
     border: 1px solid $color2;
-    width: 25%;
-    height: auto;
+    width: 25vw ;
+    height:auto;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -9,11 +14,47 @@
     padding: 1rem;
     border-radius: $border-radius;
     margin: 2rem;
-    img{
-        width: 13%;
+    img {
+      width: 13%;
     }
-    span{
-        color: $color2;
-        padding: 0 1rem;
+    span {
+      color: $color2;
+      padding: 0 1rem;
     }
+  }
+  .logo{
+    h1{
+      padding: 1rem;
+      color: white;
+      top: 0;
+      right: 0;
+      position: absolute;
+    }
+  }
+  .company-content{
+    display: flex;
+    flex-direction: row;
+  }
+}
+@media screen and (min-width: 280px) and (max-width: 1080px)  {
+  .home{
+    .current-value{
+      width: 300px;
+      img{
+        span{
+
+        }
+      }
+    }
+    .logo{
+      h1{
+        font-size: 0.9rem;
+      }
+    }
+    .company-content{
+      display: flex;
+      flex-direction: column;
+    }
+  }
+
 }
