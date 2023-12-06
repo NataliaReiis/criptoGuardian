@@ -61,7 +61,7 @@ const YourLineChart: React.FC = () => {
   }, []);
 
   return (
-    <ResponsiveContainer width="90%" height={300}>
+    <ResponsiveContainer className="graphic" width="90%" height={250}>
       <LineChart data={chartData.YAxis[0].data.map((value, index) => ({ timestamp: index, value }))}>
         <XAxis dataKey="timestamp" />
         <YAxis domain={['auto', 'auto']} />
